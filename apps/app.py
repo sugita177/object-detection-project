@@ -11,7 +11,6 @@ def create_app():
 
     app.config.from_mapping(
 
-        
     )
 
     db.init_app(app)
