@@ -6,7 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model, UserMixin):
-    __table_name__ = "users"
+    # table name is plural
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, index=True)
     email = db.Column(db.String, index=True, unique=True)
@@ -14,6 +15,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(
         db.DateTime, default=datetime.now, onupdate=datetime.now
+    )
+    user_images = db.relationship(
+        "UserImage", backref="user"
     )
 
     @property
